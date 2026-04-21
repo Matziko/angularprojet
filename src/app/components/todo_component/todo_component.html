@@ -1,0 +1,39 @@
+<!-- <ol>
+  <li *ngFor="let item of todos">
+    <button (click)="toggleTodo(item)">toggle</button>
+    <input 
+    type="checkbox" 
+    [checked]="item.completed" 
+    (change)="toggleTodo(item)">
+    {{ item.task }} - {{ item.completed ? 'Done' : 'Pending' }} - {{item.priority}} - {{item.createAt | date:'short'}}
+    <button
+     type="button" class="delete-button" (click)="deleteTodo(item)">
+     Delete
+    </button>
+  </li>
+</ol> -->
+<table>
+  <thead>
+    <tr>
+      <th>Options</th>
+      <th>Task</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Create At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of todos" [ngClass]="item.priority">
+      <td>
+        <button (click)="toggleTodo(item)">toggle</button>
+        <button type="button" class="delete-button" (click)="deleteTodo(item)">
+          Delete
+        </button>
+      </td>
+      <td>{{ item.task }}</td>
+      <td>{{ item.completed ? 'Done' : 'Pending' }}</td>
+      <td>{{item.priority}}</td>
+      <td>{{item.createAt | date:'short'}}</td>
+    </tr>
+  </tbody>
+</table>
