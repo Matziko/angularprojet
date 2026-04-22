@@ -1,39 +1,37 @@
-<!-- <ol>
-  <li *ngFor="let item of todos">
-    <button (click)="toggleTodo(item)">toggle</button>
-    <input 
-    type="checkbox" 
-    [checked]="item.completed" 
-    (change)="toggleTodo(item)">
-    {{ item.task }} - {{ item.completed ? 'Done' : 'Pending' }} - {{item.priority}} - {{item.createAt | date:'short'}}
-    <button
-     type="button" class="delete-button" (click)="deleteTodo(item)">
-     Delete
-    </button>
-  </li>
-</ol> -->
-<table>
-  <thead>
+  <table>
+    <thead>
     <tr>
-      <th>Options</th>
-      <th>Task</th>
-      <th>Status</th>
-      <th>Priority</th>
-      <th>Create At</th>
+      <th (click)="sortBy('priority')">⮃ Priority</th>
+      <th (click)="sortBy('task')">⮃ Task</th>
+      <th (click)="sortBy('status')">⮃ Status</th>
+      <th (click)="sortBy('dateCreated')">⮃ Date Created</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of todos" [ngClass]="item.priority">
+    <tr *ngFor="let item of sortedData" [ngClass]="{
+      'completed': item.completed, 
+      'low': item.priority === 'low',
+      'medium': item.priority === 'medium',
+      'high': item.priority === 'high'
+      }">
+      <td>{{item.priority}}</td>
+      <td><p>{{ item.task }}</p></td>
+      <td>{{ item.completed ? 'Done' : 'Pending' }}</td>
+      <td>{{item.createAt | date:'short'}}</td>
       <td>
-        <button (click)="toggleTodo(item)">toggle</button>
-        <button type="button" class="delete-button" (click)="deleteTodo(item)">
-          Delete
+        <input
+          type="checkbox"
+          [checked]="item.completed"
+          (change)="toggleTodo(item)"
+          >
+        <button
+          type="button"
+          class="delete-button"
+          (click)="deleteTodo(item)">
+            Delete
         </button>
       </td>
-      <td>{{ item.task }}</td>
-      <td>{{ item.completed ? 'Done' : 'Pending' }}</td>
-      <td>{{item.priority}}</td>
-      <td>{{item.createAt | date:'short'}}</td>
     </tr>
   </tbody>
 </table>

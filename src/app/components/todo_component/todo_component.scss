@@ -1,3 +1,17 @@
+
+  $high-color: #ffd2d2;
+  $medium-color: #fff3d9;
+  $low-color: #dffeff;
+ $turnedON: saturate(2.5) brightness(1.2);
+
+table{
+    table-layout: fixed;
+    border-collapse: separate !important;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+    border-radius: 15px;
+    padding: 15px;
+    border-spacing: 0;
+}
 thead{
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -6,18 +20,57 @@ tbody{
     font-family: Arial, sans-serif;
 }
 th, td {
-    border: 1px solid #ddd;
     padding: 8px;
+text-transform: uppercase;
+        max-width: 311px;
+    p{
+    white-space: normal; 
+    overflow-wrap: break-word; 
+    word-wrap: break-word; 
+    word-break: break-word;
+    margin: 0;
+    display: block;
+    width: 100%; 
+  }
 }
 
-.high {
-    background-color: #dd8686;
-}
+tr {
+  // Your base styles for rows
+  transition: all 0.3s ease;
 
-.medium {
-    background-color: #f1d581;
-}
+  &.low {background-color: $low-color; }
+  &.medium { background-color: $medium-color; }
+  &.high { background-color: $high-color; }
 
-.low {
-    background-color: #a3ec99;
+  // THE MAGIC: When the row is completed
+  &.completed {
+    
+    background-color: #e0e0e0 !important; // Turn the whole row gray
+    opacity: 0.6; // Make it look faded
+    
+    p {
+      text-decoration: line-through;
+      color: #666;
+    }
+    
+  }
 }
+.delete-button{
+    border-style: none;
+    border-radius: 15px;
+    align-self: center;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+   background-color: #c91010;
+        color: rgb(255, 235, 235);
+    width: 55px;
+    height: 25px;
+
+    &:hover {
+        color: #ffffff;
+    box-shadow: 0px 0px 20px 7px rgb(255 0 0 / 28%);
+    }
+    &:active {
+        color: #c9c9c9;
+    box-shadow: inset 2px 3px 8px 0px rgb(0 0 0 / 57%);
+    background-color: #ff0000;
+}}

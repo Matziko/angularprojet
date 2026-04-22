@@ -1,46 +1,46 @@
 
+<h1>My To-Do List</h1>
 
 <form (ngSubmit)="onFormSubmit()">
 
     <label for="todo-input">
-        Task input :
+        Add a new task:
     </label>
-
-    <div class="input-group">
-
-        <input 
+    <textarea 
             type="text" 
             id="todo-input" 
             name="todoTask" 
             [(ngModel)]="newTaskText" 
-            required>
-
-        <button type="submit">
-            SEND
-        </button>
-
-    </div>
-
-    <div class="priority-selector">
-
-        <button type="button"class="priority-button-low" 
-          (click)="setPriority('low')" 
-          [class.active]="selectedPriority === 'low'">
-        LOW
-        </button>
-
-        <button type="button"class="priority-button-medium" 
-          (click)="setPriority('medium')" 
-          [class.active]="selectedPriority === 'medium'">
-        MEDIUM
+            required  ></textarea>
+            
+            
+            
+            
+            <div class="priority-selector">
+                
+                <button type="button"class="priority-button-low" 
+                (click)="setPriority('low')" 
+                [class.active]="selectedPriority === 'low'">
+                LOW
+            </button>
+            
+            <button type="button"class="priority-button-medium" 
+            (click)="setPriority('medium')" 
+            [class.active]="selectedPriority === 'medium'">
+            MEDIUM
         </button>
 
         <button type="button"class="priority-button-high" 
           (click)="setPriority('high')" 
           [class.active]="selectedPriority === 'high'">
-        HIGH
+          HIGH
         </button>
 
     </div>
+    
+    <button type="submit"
+    class="submit-button">
+        ⮞
+    </button>
 
-  </form>
+</form>

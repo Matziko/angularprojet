@@ -1,0 +1,91 @@
+
+  $high-color: #c91010;
+  $medium-color: #ce900a;
+  $low-color: #09969b;
+ $turnedON: saturate(2.5) brightness(1.2);
+
+.priority-button-high {
+    background-color: $high-color;
+        width: stretch;
+        border: none;
+        height: 50px;
+        border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+    &.active {
+        filter:  $turnedON;
+       box-shadow: 0px 0px 20px 2px rgb(255 0 0 / 72%);
+    }
+}
+
+.priority-button-medium {
+    background-color: $medium-color;
+        width: stretch;
+        border: none;
+        height: 50px;
+        box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+        &.active {
+        filter:  $turnedON;
+       box-shadow: 0px 0px 20px 2px rgba(255, 174, 0, 0.726);
+    }
+}
+
+.priority-button-low {
+    background-color: $low-color;
+        width: stretch;
+        border: none;
+        height: 50px;
+        border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+    &.active {
+        filter:  $turnedON;
+       box-shadow: 0px 0px 20px 2px rgba(0, 255, 221, 0.72);
+    }
+}
+
+.priority-button-low, 
+.priority-button-medium, 
+.priority-button-high {
+ font-weight: bold;
+    color: rgb(0, 0, 0);   
+}
+
+
+    #todo-input{
+        resize: none;
+        overflow: hidden;
+    width: 485px;
+    height: 65px;
+    background-color: rgba(122, 61, 61, 0.1019607843);
+    border: none;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+    border-radius: 15px;
+    padding: 15px;
+
+    &:focus-visible {
+        outline: none;
+    border: solid 1px #061627a6;
+    width: 483px;
+    height: 63px;
+  }
+
+    }
+    
+    form{
+            display: flex;
+    flex-direction: column;
+    gap: 18px;
+    }
+    .submit-button{
+        border-style: none;
+    border-radius: 15px;
+    height: 50px;
+    width: 216px;
+    align-self: center;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+    }
+    .priority-selector{
+        display: flex;
+    justify-content: space-between;
+    }
