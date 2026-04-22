@@ -1,7 +1,7 @@
 
-  $high-color: #ffd2d2;
-  $medium-color: #fff3d9;
-  $low-color: #dffeff;
+  $high-color: #f3f3f3;
+  $medium-color: #f3f3f3;
+  $low-color: #f3f3f3;
  $turnedON: saturate(2.5) brightness(1.2);
 
 table{
@@ -14,7 +14,12 @@ table{
 }
 thead{
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #ebe8e8;
+    th{ 
+            border-left: 1px solid rgb(0 0 0 / 9%);
+    text-align: left;
+    border-left-style: outset;
+    }
 }
 tbody{
     font-family: Arial, sans-serif;
@@ -35,19 +40,21 @@ text-transform: uppercase;
 }
 
 tr {
-  // Your base styles for rows
   transition: all 0.3s ease;
 
-  &.low {background-color: $low-color; }
-  &.medium { background-color: $medium-color; }
-  &.high { background-color: $high-color; }
+  &.low {background-color: $low-color; .priority-badge { background-color: #d4edda; color: #155724; }}
+  &.medium { background-color: $medium-color; .priority-badge { background-color: #fff3cd; color: #856404; }}
+  &.high { background-color: $high-color; .priority-badge { background-color: #f8d7da; color: #721c24;  }}
 
-  // THE MAGIC: When the row is completed
   &.completed {
     
-    background-color: #e0e0e0 !important; // Turn the whole row gray
-    opacity: 0.6; // Make it look faded
-    
+    background-color: #e0e0e0 !important; 
+    opacity: 0.6; 
+    .priority-badge {
+      background-color: #e2e3e5 !important;
+      color: #6c757d !important;
+      text-decoration: none !important; 
+    }
     p {
       text-decoration: line-through;
       color: #666;
@@ -57,7 +64,7 @@ tr {
 }
 .delete-button{
     border-style: none;
-    border-radius: 15px;
+    border-radius: 6px;
     align-self: center;
     box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
    background-color: #c91010;
@@ -74,3 +81,54 @@ tr {
     box-shadow: inset 2px 3px 8px 0px rgb(0 0 0 / 57%);
     background-color: #ff0000;
 }}
+input[type="checkbox"] {
+  appearance: none; 
+  background-color: #fff;
+  margin: 0;
+  cursor: pointer;
+  width: 1.5em;       
+  height: 1.5em;
+  border: 0.15em solid #ccc;
+  border-radius: 3.35em; 
+  display: grid;
+  place-content: center;
+  transition: border-color 0.2s ease;
+
+  &::before {
+    content: "";
+    width: 0.75em;
+    height: 0.75em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: #2196F3; 
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+
+  &:checked {
+    border-color: #2196F3; 
+    
+    &::before {
+      transform: scale(1);
+    }
+  }
+
+  &:hover {
+    border-color: #999;
+  }
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.priority-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #eee; 
+  color: #333;
+  transition: all 0.3s ease;
+}

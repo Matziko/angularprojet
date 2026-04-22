@@ -1,17 +1,19 @@
 
-<h1>My To-Do List</h1>
+<div class="todo-input-title">
+    <h1 [attr.data-text]="headerPhrase">{{ headerPhrase }}</h1>
+</div>
 
 <form (ngSubmit)="onFormSubmit()">
 
     <label for="todo-input">
-        Add a new task:
+        Type your task here:
     </label>
     <textarea 
             type="text" 
             id="todo-input" 
             name="todoTask" 
             [(ngModel)]="newTaskText" 
-            required  ></textarea>
+            required></textarea>
             
             
             
@@ -40,7 +42,7 @@
     
     <button type="submit"
     class="submit-button">
-        ⮞
+       SUBMIT ⮞
     </button>
 
 </form>
