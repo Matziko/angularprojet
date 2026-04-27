@@ -1,63 +1,75 @@
+$high-color: #c91010;
+$medium-color: #ddcc13;
+$low-color: #09969b;
 
-  $high-color: #c91010;
-  $medium-color: #ddcc13;
-  $low-color: #09969b;
- $turnedON: saturate(2.5) brightness(1.2);
+// background-color: #d4edda; color: #155724;
+// background-color: #fff3cd; color: #856404;
+// background-color: #f8d7da; color: #721c24;
+
+// $high-color: #f8d7da;
+// $medium-color: #fff3cd;
+// $low-color: #d4edda;
+$turnedON: saturate(2.5) brightness(1.2);
+
+// $turnedON: saturate(2) brightness(0.7) contrast(4.5) drop-shadow(2px 4px 6px black);
 
 .priority-button-high {
     background-color: $high-color;
-        width: stretch;
-        border: none;
-        height: 50px;
-        border-bottom-right-radius: 15px;
+    width: stretch;
+    border: none;
+    height: 50px;
+    border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+
     &.active {
-        filter:  $turnedON;
-       box-shadow: 0px 0px 20px 2px rgb(255 0 0 / 72%);
-       color: #ffacc1;
+        filter: $turnedON;
+        box-shadow: 0px 0px 20px 2px rgb(255 0 0 / 72%);
+        color: #ffacc1;
     }
 }
 
 .priority-button-medium {
     background-color: $medium-color;
-        width: stretch;
-        border: none;
-        height: 50px;
-        box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-        &.active {
-        filter:  $turnedON;
-       box-shadow: 0px 0px 20px 2px #fff378;
-       color: #585e0e;
+    width: stretch;
+    border: none;
+    height: 50px;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+
+    &.active {
+        filter: $turnedON;
+        box-shadow: 0px 0px 20px 2px #fff378;
+        color: #585e0e;
     }
 }
 
 .priority-button-low {
     background-color: $low-color;
-        width: stretch;
-        border: none;
-        height: 50px;
-        border-bottom-left-radius: 15px;
+    width: stretch;
+    border: none;
+    height: 50px;
+    border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+
     &.active {
-        filter:  $turnedON;
-       box-shadow: 0px 0px 20px 2px rgba(0, 255, 221, 0.72);
-       color: #040029;
+        filter: $turnedON;
+        box-shadow: 0px 0px 20px 2px rgba(0, 255, 221, 0.72);
+        color: #040029;
     }
 }
 
-.priority-button-low, 
-.priority-button-medium, 
+.priority-button-low,
+.priority-button-medium,
 .priority-button-high {
- font-weight: bold;
-    color: rgb(0, 0, 0);   
+    font-weight: bold;
+    color: rgb(0, 0, 0);
 }
 
 
-    #todo-input{
-        resize: none;
-        overflow: hidden;
+#todo-input {
+    resize: none;
+    overflow: hidden;
     width: 485px;
     height: 35px;
     background-color: rgba(122, 61, 61, 0.1019607843);
@@ -68,81 +80,88 @@
 
     &:focus-visible {
         outline: none;
-    border: solid 1px #061627a6;
-    width: 483px;
-    height: 33px;
-  }
-
+        border: solid 1px #061627a6;
+        width: 483px;
+        height: 33px;
     }
-    
-    form{
-            display: flex;
+
+}
+
+form {
+    display: flex;
     flex-direction: column;
     gap: 18px;
+}
+
+
+
+.submit-button {
+    position: relative;
+    border-style: none;
+    border-radius: 15px;
+    height: 50px;
+    width: 216px;
+    align-self: center;
+    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+
+    background-color: #eee;
+    color: #333;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(transparent,
+                #000000,
+                transparent 30%);
+        animation: rotate-glow 3s linear infinite;
+        z-index: -2;
     }
 
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        background: inherit;
+        border-radius: 12px;
+        z-index: -1;
+    }
 
+    &:hover {
+        box-shadow: 0 0 20px #000000b4;
+        background-color: #000000;
+        color: white;
+        transition: box-shadow 0.3s ease;
 
-    .submit-button{
-  position: relative; 
-  border-style: none;
-  border-radius: 15px;
-  height: 50px;
-  width: 216px;
-  align-self: center;
-  box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-  
-  background-color: #eee; 
-  color: #333;
-  cursor: pointer;
-  overflow: hidden; 
-  z-index: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%; 
-    height: 200%;
-    background: conic-gradient(
-      transparent, 
-      #88ff00, 
-      transparent 30%
-    );
-    animation: rotate-glow 3s linear infinite;
-    z-index: -2;
-  }
-
-  //the hollow border effect
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 3px; 
-    background: inherit;
-    border-radius: 12px;
-    z-index: -1;
-  }
-
-  //extra glow effect on hover
-  &:hover {
-    box-shadow: 0 0 20px #88ff00b4;
-    background-color: #c3ff7e;
-    transition: box-shadow 0.3s ease;
-  }
+        &::before {
+            background: conic-gradient(transparent,
+                    rgb(255, 0, 0)rent 30%);
+        }
+    }
 }
 
 @keyframes rotate-glow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-    
-
-
-    .priority-selector{
-        display: flex;
-    justify-content: space-between;
+    from {
+        transform: rotate(0deg);
     }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.priority-selector {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 
@@ -158,32 +177,39 @@
         position: relative;
         z-index: 1;
         color: #333;
+
         &::before {
-            content: attr(data-text); 
-            
+            content: attr(data-text);
+
             position: absolute;
             top: 0px;
             left: 0px;
-            
+
             z-index: -1;
             width: 100%;
-            
-            // The Gradient Logic
             background: linear-gradient(45deg, #00ffea, #a200ff, #00f7ff, #c300ff);
             background-size: 300% 300%;
-            -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradient-shift 5s ease infinite;
-            
+
             filter: blur(5px);
             opacity: 0.7;
         }
-        
+
     }
 }
 
 @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }

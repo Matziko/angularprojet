@@ -1,4 +1,3 @@
-
 <div class="todo-input-title">
     <h1 [attr.data-text]="headerPhrase">{{ headerPhrase }}</h1>
 </div>
@@ -8,41 +7,32 @@
     <label for="todo-input">
         Type your task here:
     </label>
-    <textarea 
-            type="text" 
-            id="todo-input" 
-            name="todoTask" 
-            [(ngModel)]="newTaskText" 
-            required></textarea>
-            
-            
-            
-            
-            <div class="priority-selector">
-                
-                <button type="button"class="priority-button-low" 
-                (click)="setPriority('low')" 
-                [class.active]="selectedPriority === 'low'">
-                LOW
-            </button>
-            
-            <button type="button"class="priority-button-medium" 
-            (click)="setPriority('medium')" 
+    <textarea type="text" id="todo-input" name="todoTask" [(ngModel)]="newTaskText" required></textarea>
+
+
+
+
+    <div class="priority-selector">
+
+        <button type="button" class="priority-button-low" (click)="setPriority('low')"
+            [class.active]="selectedPriority === 'low'">
+            LOW
+        </button>
+
+        <button type="button" class="priority-button-medium" (click)="setPriority('medium')"
             [class.active]="selectedPriority === 'medium'">
             MEDIUM
         </button>
 
-        <button type="button"class="priority-button-high" 
-          (click)="setPriority('high')" 
-          [class.active]="selectedPriority === 'high'">
-          HIGH
+        <button type="button" class="priority-button-high" (click)="setPriority('high')"
+            [class.active]="selectedPriority === 'high'">
+            HIGH
         </button>
 
     </div>
-    
-    <button type="submit"
-    class="submit-button">
-       SUBMIT ⮞
+
+    <button type="submit" class="submit-button">
+        SUBMIT ⮞
     </button>
 
 </form>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Todo } from '../../models/todo.models';
 import { TodoService } from '../../services/todo.service';
+
 
 @Component({
   selector: 'app-todo',
@@ -10,37 +11,36 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo_component.scss'],
   imports: [CommonModule]
 })
+
+
 export class TodoComponent implements OnInit {
-  todos: Todo[] = [];
   sortedData: Todo[] = [];
   displayedColumns: string[] = ['task', 'status', 'priority', 'dateCreated', 'actions'];
   sort = { active: '', direction: '' as 'asc' | 'desc' | '' };
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
-    this.loadTodos();
-  }
-
-  loadTodos() {
-    this.todoService.getTodos().subscribe(todos => {
-      this.todos = todos;
-      this.sortedData = todos.slice();
+    this.todoService.todos$.subscribe((todos: Todo[]) => {
+      this.sortedData = [...todos];
+      this.sortData();
+      this.cdr.detectChanges();
     });
+    this.todoService.fetchTodos();
   }
-
 
   toggleTodo(todo: Todo) {
-    todo.completed = !todo.completed;
-    this.todoService.updateTodo(todo).subscribe(() => {
-      this.loadTodos();
-    });
+    const updatedTodo = { ...todo, completed: !todo.completed };
+    this.todoService.updateTodo(updatedTodo);
   }
 
-  deleteTodo(sortedData: Todo) {
-    this.todoService.deleteTodo(sortedData).subscribe(() => {
-      this.loadTodos();
-    });
+  deleteTodo(todo: Todo) {
+    if (todo.id) {
+      this.todoService.deleteTodo(todo.id);
+    }
   }
 
   sortBy(column: string) {
@@ -54,29 +54,30 @@ export class TodoComponent implements OnInit {
   }
 
   sortData() {
-    const data = this.todos.slice();
-    if (!this.sort.active || this.sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
+    if (!this.sort.active || this.sort.direction === '') return;
 
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = this.sort.direction === 'asc';
-      switch (this.sort.active) {
-        case 'task': return compare(a.task, b.task, isAsc);
-        case 'status': return compare(a.completed, b.completed, isAsc);
-        case 'priority': return compare(a.priority, b.priority, isAsc);
-        case 'dateCreated': return compare(a.createAt, b.createAt, isAsc);
-        default: return 0;
-      }
+    const isAsc = this.sort.direction === 'asc';
+
+    const columnMap: Record<string, keyof Todo> = {
+      'task': 'task',
+      'status': 'completed',
+      'priority': 'priority',
+      'dateCreated': 'createAt'
+    };
+
+    const property = columnMap[this.sort.active];
+
+    this.sortedData.sort((a, b) => {
+      const valA = a[property];
+      const valB = b[property];
+
+      if (valA == null && valB == null) return 0;
+      if (valA == null) return isAsc ? -1 : 1;
+      if (valB == null) return isAsc ? 1 : -1;
+
+      const comparison = valA < valB ? -1 : valA > valB ? 1 : 0;
+      return isAsc ? comparison : -comparison;
+
     });
   }
-}
-
-function compare(a: number | string | boolean | Date | undefined, b: number | string | boolean | Date | undefined, isAsc: boolean) {
-  if (a == null && b == null) return 0;
-  if (a == null) return isAsc ? -1 : 1;
-  if (b == null) return isAsc ? 1 : -1;
-  const comparison = a < b ? -1 : a > b ? 1 : 0;
-  return isAsc ? comparison : -comparison;
 }

@@ -1,6 +1,8 @@
-import { Component,OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
+import { Todo } from '../../models/todo.models';
+
 
 @Component({
   selector: 'app-todo-input',
@@ -9,23 +11,25 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo_input.scss'],
   imports: [FormsModule]
 })
-export class TodoInputComponent implements OnInit{
+
+
+export class TodoInputComponent implements OnInit {
+
   newTaskText: string = '';
   selectedPriority: 'low' | 'medium' | 'high' = 'low';
   headerPhrase: string = '';
 
-
-private phrases: string[] = [
+  private phrases: string[] = [
     "What's the plan for today?",
     "Got something new to achieve?",
     "Type it, do it, crush it.",
     "Let's get organized!",
     "One task at a time..."
   ];
-  
-  constructor(private todoService: TodoService) {}
 
-ngOnInit() {
+  constructor(private todoService: TodoService) { }
+
+  ngOnInit() {
     const index = Math.floor(Math.random() * this.phrases.length);
     this.headerPhrase = this.phrases[index];
   }
@@ -36,14 +40,14 @@ ngOnInit() {
 
   onFormSubmit() {
     if (this.newTaskText.length > 0) {
-      const order = {
+      const order: Todo = {
         task: this.newTaskText,
         priority: this.selectedPriority,
         completed: false
       };
-      this.todoService.addTodo(order).subscribe(() => {
-        this.newTaskText = '';
-      });
+
+      this.todoService.addTodo(order);
+      this.newTaskText = '';
     }
   }
 }

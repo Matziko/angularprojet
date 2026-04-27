@@ -1,5 +1,5 @@
-  <table>
-    <thead>
+<table>
+  <thead>
     <tr>
       <th (click)="sortBy('priority')">{{ sort.active === 'priority' ? '↓' : '↑' }} Priority</th>
       <th (click)="sortBy('task')">{{ sort.active === 'task' ? '↓' : '↑' }} Task</th>
@@ -15,24 +15,22 @@
       'medium': item.priority === 'medium',
       'high': item.priority === 'high'
       }">
-      
-      <td><div class="checkbox-container"><input
-        type="checkbox"
-        [checked]="item.completed"
-        (change)="toggleTodo(item)"
-        ><span class="priority-badge">
-          {{ item.priority }}
-        </span>
-      </div></td>
-      <td><p>{{ item.task }}</p></td>
+
+      <td>
+        <div class="checkbox-container"><input type="checkbox" [checked]="item.completed"
+            (change)="toggleTodo(item)"><span class="priority-badge">
+            {{ item.priority }}
+          </span>
+        </div>
+      </td>
+      <td>
+        <p>{{ item.task }}</p>
+      </td>
       <td>{{ item.completed ? 'Done' : 'Pending' }}</td>
       <td>{{item.createAt | date:'short'}}</td>
       <td>
-        <button
-          type="button"
-          class="delete-button"
-          (click)="deleteTodo(item)">
-            Delete
+        <button type="button" class="delete-button" (click)="deleteTodo(item)">
+          Delete
         </button>
       </td>
     </tr>

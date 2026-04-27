@@ -1,95 +1,129 @@
+$high-color: #f3f3f3;
+$medium-color: #f3f3f3;
+$low-color: #f3f3f3;
+$turnedON: saturate(2.5) brightness(1.2);
 
-  $high-color: #f3f3f3;
-  $medium-color: #f3f3f3;
-  $low-color: #f3f3f3;
- $turnedON: saturate(2.5) brightness(1.2);
-
-table{
-    table-layout: fixed;
-    border-collapse: separate !important;
-    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-    border-radius: 15px;
-    padding: 15px;
-    border-spacing: 0;
+table {
+  table-layout: fixed;
+  border-collapse: separate !important;
+  box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+  border-radius: 15px;
+  padding: 15px;
+  border-spacing: 0;
 }
-thead{
-    font-family: Arial, sans-serif;
-    background-color: #ebe8e8;
-    th{ 
-            border-left: 1px solid rgb(0 0 0 / 9%);
+
+thead {
+  font-family: Arial, sans-serif;
+  background-color: #ebe8e8;
+
+  th {
+    border-left: 1px solid rgb(0 0 0 / 9%);
     text-align: left;
     border-left-style: outset;
-    }
+  }
 }
-tbody{
-    font-family: Arial, sans-serif;
+
+tbody {
+  font-family: Arial, sans-serif;
 }
-th, td {
-    padding: 8px;
-text-transform: uppercase;
-        max-width: 311px;
-    p{
-    white-space: normal; 
-    overflow-wrap: break-word; 
-    word-wrap: break-word; 
+
+th,
+td {
+  padding: 8px;
+  text-transform: uppercase;
+  max-width: 311px;
+
+  p {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
     word-break: break-word;
     margin: 0;
     display: block;
-    width: 100%; 
+    width: 100%;
   }
 }
 
 tr {
   transition: all 0.3s ease;
 
-  &.low {background-color: $low-color; .priority-badge { background-color: #d4edda; color: #155724; }}
-  &.medium { background-color: $medium-color; .priority-badge { background-color: #fff3cd; color: #856404; }}
-  &.high { background-color: $high-color; .priority-badge { background-color: #f8d7da; color: #721c24;  }}
+  &.low {
+    background-color: $low-color;
+
+    .priority-badge {
+      background-color: #d4edda;
+      color: #155724;
+    }
+  }
+
+  &.medium {
+    background-color: $medium-color;
+
+    .priority-badge {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+  }
+
+  &.high {
+    background-color: $high-color;
+
+    .priority-badge {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  }
 
   &.completed {
-    
-    background-color: #e0e0e0 !important; 
-    opacity: 0.6; 
+
+    background-color: #e0e0e0 !important;
+    opacity: 0.6;
+
     .priority-badge {
       background-color: #e2e3e5 !important;
       color: #6c757d !important;
-      text-decoration: none !important; 
+      text-decoration: none !important;
     }
+
     p {
       text-decoration: line-through;
       color: #666;
     }
-    
+
   }
 }
-.delete-button{
-    border-style: none;
-    border-radius: 6px;
-    align-self: center;
-    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-   background-color: #c91010;
-        color: rgb(255, 235, 235);
-    width: 55px;
-    height: 25px;
 
-    &:hover {
-        color: #ffffff;
+.delete-button {
+  border-style: none;
+  border-radius: 6px;
+  align-self: center;
+  box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+  background-color: #c91010;
+  color: rgb(255, 235, 235);
+  width: 55px;
+  height: 25px;
+
+  &:hover {
+    color: #ffffff;
     box-shadow: 0px 0px 20px 7px rgb(255 0 0 / 28%);
-    }
-    &:active {
-        color: #c9c9c9;
+  }
+
+  &:active {
+    color: #c9c9c9;
     box-shadow: inset 2px 3px 8px 0px rgb(0 0 0 / 57%);
     background-color: #ff0000;
-}}
+  }
+}
+
 input[type="checkbox"] {
-  appearance: none; 
+  appearance: none;
   background-color: #fff;
   margin: 0;
   cursor: pointer;
-  width: 1.5em;       
+  width: 1.5em;
   height: 1.5em;
   border: 0.15em solid #ccc;
-  border-radius: 3.35em; 
+  border-radius: 3.35em;
   display: grid;
   place-content: center;
   transition: border-color 0.2s ease;
@@ -100,13 +134,13 @@ input[type="checkbox"] {
     height: 0.75em;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    background-color: #2196F3; 
+    background-color: #2196F3;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   }
 
   &:checked {
-    border-color: #2196F3; 
-    
+    border-color: #2196F3;
+
     &::before {
       transform: scale(1);
     }
@@ -116,11 +150,13 @@ input[type="checkbox"] {
     border-color: #999;
   }
 }
+
 .checkbox-container {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .priority-badge {
   padding: 4px 10px;
   border-radius: 6px;
@@ -128,7 +164,7 @@ input[type="checkbox"] {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  background-color: #eee; 
+  background-color: #eee;
   color: #333;
   transition: all 0.3s ease;
 }
