@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
 import { Todo } from '../../models/todo.models';
-
+import { TodoInputLogicService } from '../../services/todo_input.service';
 
 @Component({
   selector: 'app-todo-input',
@@ -19,19 +19,10 @@ export class TodoInputComponent implements OnInit {
   selectedPriority: 'low' | 'medium' | 'high' = 'low';
   headerPhrase: string = '';
 
-  private phrases: string[] = [
-    "What's the plan for today?",
-    "Got something new to achieve?",
-    "Type it, do it, crush it.",
-    "Let's get organized!",
-    "One task at a time..."
-  ];
-
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private todoInputLogicService: TodoInputLogicService) { }
 
   ngOnInit() {
-    const index = Math.floor(Math.random() * this.phrases.length);
-    this.headerPhrase = this.phrases[index];
+    this.headerPhrase = this.todoInputLogicService.getRandomPhrase();
   }
 
   setPriority(p: 'low' | 'medium' | 'high') {

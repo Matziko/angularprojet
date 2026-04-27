@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Todo } from '../../models/todo.models';
 import { TodoService } from '../../services/todo.service';
-
+import { TodoListLogicService } from '../../services/todo_component.service';
 
 @Component({
   selector: 'app-todo',
@@ -18,15 +18,18 @@ export class TodoComponent implements OnInit {
   displayedColumns: string[] = ['task', 'status', 'priority', 'dateCreated', 'actions'];
   sort = { active: '', direction: '' as 'asc' | 'desc' | '' };
 
+private currentTodos: Todo[] = [];
+
   constructor(
     private todoService: TodoService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private todoListLogicService: TodoListLogicService
   ) { }
 
   ngOnInit() {
     this.todoService.todos$.subscribe((todos: Todo[]) => {
-      this.sortedData = [...todos];
-      this.sortData();
+      this.currentTodos = [...todos];
+      this.sortedData = this.todoListLogicService.sortData(this.currentTodos, this.sort.active, this.sort.direction);
       this.cdr.detectChanges();
     });
     this.todoService.fetchTodos();
@@ -50,7 +53,7 @@ export class TodoComponent implements OnInit {
       this.sort.active = column;
       this.sort.direction = 'asc';
     }
-    this.sortData();
+    this.sortedData = this.todoListLogicService.sortData(this.currentTodos, this.sort.active, this.sort.direction);
   }
 
   sortData() {

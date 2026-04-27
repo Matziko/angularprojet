@@ -1,7 +1,4 @@
-$high-color: #f3f3f3;
-$medium-color: #f3f3f3;
-$low-color: #f3f3f3;
-$turnedON: saturate(2.5) brightness(1.2);
+$bgcolor1: #f3f3f3;
 
 table {
   table-layout: fixed;
@@ -11,7 +8,6 @@ table {
   padding: 15px;
   border-spacing: 0;
 }
-
 thead {
   font-family: Arial, sans-serif;
   background-color: #ebe8e8;
@@ -20,14 +16,16 @@ thead {
     border-left: 1px solid rgb(0 0 0 / 9%);
     text-align: left;
     border-left-style: outset;
+    padding: 8px;
+  text-transform: uppercase;
+  max-width: 311px;
   }
 }
 
 tbody {
-  font-family: Arial, sans-serif;
+  font-family: 'Lilex', sans-serif;
 }
 
-th,
 td {
   padding: 8px;
   text-transform: uppercase;
@@ -48,29 +46,30 @@ tr {
   transition: all 0.3s ease;
 
   &.low {
-    background-color: $low-color;
+    background-color: $bgcolor1;
 
     .priority-badge {
-      background-color: #d4edda;
-      color: #155724;
+      background-color: #6fe2ff;
+      color: #153d57;
     }
   }
 
   &.medium {
-    background-color: $medium-color;
+    background-color: $bgcolor1;
 
     .priority-badge {
-      background-color: #fff3cd;
+      background-color: #ffe07a;
       color: #856404;
     }
   }
 
   &.high {
-    background-color: $high-color;
+    background-color: $bgcolor1;
 
     .priority-badge {
-      background-color: #f8d7da;
-      color: #721c24;
+      background-color: #ff5765;
+      color: #741d26;
+      // color: #721c24;
     }
   }
 

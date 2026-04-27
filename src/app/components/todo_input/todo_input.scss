@@ -1,71 +1,41 @@
-$high-color: #c91010;
-$medium-color: #ddcc13;
-$low-color: #09969b;
-
-// background-color: #d4edda; color: #155724;
-// background-color: #fff3cd; color: #856404;
-// background-color: #f8d7da; color: #721c24;
-
-// $high-color: #f8d7da;
-// $medium-color: #fff3cd;
-// $low-color: #d4edda;
 $turnedON: saturate(2.5) brightness(1.2);
+$priorities: (
+  'low': #09969b,
+  'medium': #ddcc13,
+  'high': #c91010
+);
 
-// $turnedON: saturate(2) brightness(0.7) contrast(4.5) drop-shadow(2px 4px 6px black);
+@each $name, $value in $priorities {
+    .priority-button-#{$name} {
+        font-family: 'mortane', sans-serif;
+        text-shadow: 0px 0px 14px rgba(0, 0, 0, 70%);
+        font-size: 15px;
+        letter-spacing: 1px;
+        border: none;
+        width: stretch;
+        height: 50px;
+        box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
+        color: rgb(0, 0, 0);
+        background-color:($value);
+        &.active {
+            transition: all 0.3s ease;
+            font-size: 17px;
+        letter-spacing: 2px;
+            filter: $turnedON;
+            color: rgb(218, 218, 218);
+            box-shadow: 0px 0px 20px 0px ($value);
+        }
+    }
+}
 
 .priority-button-high {
-    background-color: $high-color;
-    width: stretch;
-    border: none;
-    height: 50px;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-
-    &.active {
-        filter: $turnedON;
-        box-shadow: 0px 0px 20px 2px rgb(255 0 0 / 72%);
-        color: #ffacc1;
-    }
 }
-
-.priority-button-medium {
-    background-color: $medium-color;
-    width: stretch;
-    border: none;
-    height: 50px;
-    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-
-    &.active {
-        filter: $turnedON;
-        box-shadow: 0px 0px 20px 2px #fff378;
-        color: #585e0e;
-    }
-}
-
 .priority-button-low {
-    background-color: $low-color;
-    width: stretch;
-    border: none;
-    height: 50px;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
-    box-shadow: 4px 4px 9px 0px rgba(0, 0, 0, 0.2784313725);
-
-    &.active {
-        filter: $turnedON;
-        box-shadow: 0px 0px 20px 2px rgba(0, 255, 221, 0.72);
-        color: #040029;
-    }
 }
-
-.priority-button-low,
-.priority-button-medium,
-.priority-button-high {
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-}
-
 
 #todo-input {
     resize: none;
@@ -96,6 +66,7 @@ form {
 
 
 .submit-button {
+    transition: all 0.3s ease-in-out;
     position: relative;
     border-style: none;
     border-radius: 15px;
@@ -144,15 +115,25 @@ form {
                     rgb(255, 0, 0)rent 30%);
         }
     }
+    &:active {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000000;
+        color: #000000;
+        background-color: #ffffff;
+        height: 50px;
+    width: 216px;
+
+    }
 }
 
 @keyframes rotate-glow {
     from {
-        transform: rotate(0deg);
+        transform: rotate(360deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform: rotate(0deg);
     }
 }
 
@@ -172,7 +153,8 @@ form {
     position: relative;
 
     h1 {
-        font-size: 66px;
+        font-size: 65px;
+        font-family: 'mortane', sans-serif;
         line-height: normal;
         position: relative;
         z-index: 1;

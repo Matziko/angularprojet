@@ -27,7 +27,7 @@
         <p>{{ item.task }}</p>
       </td>
       <td>{{ item.completed ? 'Done' : 'Pending' }}</td>
-      <td>{{item.createAt | date:'short'}}</td>
+      <td>{{item.createAt | date:'dd/MM hh:mm'}}</td>
       <td>
         <button type="button" class="delete-button" (click)="deleteTodo(item)">
           Delete

@@ -37,3 +37,11 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: lilex;
+  src: url(app/assets/lilexfont/ttf/Lilex-Medium.ttf) format("opentype");
+}
+@font-face {
+  font-family: mortane;
+  src: url(app/assets/mortane/MortaneDEMO-Regular.ttf) format("opentype");
+}
